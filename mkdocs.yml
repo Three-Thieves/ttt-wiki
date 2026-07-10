@@ -1,0 +1,128 @@
+site_name: "Trouble in Terrorist Town Wiki"
+site_url: https://wiki.threethieves.org/
+site_description: Documentation for Trouble in Terrorist Town on s&box.
+use_directory_urls: true
+
+nav:
+  - Home: index.md
+  - Mapping:
+      - mapping/index.md
+      - Basics:
+          - mapping/basics/index.md
+          - Player Specs: mapping/basics/player-values.md
+          - Spawns: mapping/basics/spawns.md
+          - Props: mapping/basics/props.md
+          - Movement: mapping/basics/movement.md
+          - I/O: mapping/basics/io.md 
+      - Tools: 
+        - mapping/tools/index.md
+        - Buttons and Role Buttons: mapping/tools/buttons.md
+        - Role Testers: mapping/tools/role-testers.md
+        - State and Logic: mapping/tools/state-and-logic.md
+        - Doors: mapping/tools/doors.md
+        - Linear Movers: mapping/tools/linear-movers.md
+        - Elevators and Path Movers: mapping/tools/elevators.md
+        - Ziplines and Slides: mapping/tools/ziplines-and-slides.md
+        - Triggers: mapping/tools/triggers.md
+        - Damage and Breakables: mapping/tools/damage-and-breakables.md
+        - Explosives: mapping/tools/explosives.md
+        - Object Tools: mapping/tools/object-tools.md
+          
+  - Server Hosting:
+    - server-hosting/index.md
+
+  - Reference:
+      - reference/index.md
+      - Player Commands: reference/player-commands.md
+      - Moderation: reference/moderation.md
+      - Host Settings and ConVars: reference/server-settings.md
+        
+  
+theme:
+  name: material
+  language: en
+  font:
+    text: Metrophobic
+    code: Red Hat Mono
+  logo: assets/logo.png
+  icon:
+    admonition:
+      note: fontawesome/solid/note-sticky
+      abstract: fontawesome/solid/book
+      info: fontawesome/solid/circle-info
+      tip: fontawesome/solid/bullhorn
+      success: fontawesome/solid/check
+      question: fontawesome/solid/circle-question
+      warning: fontawesome/solid/triangle-exclamation
+      failure: fontawesome/solid/bomb
+      danger: fontawesome/solid/skull
+      bug: fontawesome/solid/robot
+      example: fontawesome/solid/flask
+      quote: fontawesome/solid/quote-left
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+      primary: custom
+      accent: yellow
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Light mode
+      primary: custom
+      accent: yellow
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    #- navigation.tabs
+    #- navigation.tabs.sticky
+    #- navigation.sections
+    #- navigation.expand
+    - navigation.indexes
+    - navigation.path
+    - search.highlight
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+    - content.tooltips
+    - content.tabs.link
+    - navigation.footer
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/host-settings-copy.js
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.blocks.caption
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true 
+

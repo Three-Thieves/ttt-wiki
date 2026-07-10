@@ -1,0 +1,248 @@
+:root  > * {
+  --md-primary-fg-color:        #8a0808;
+  --md-primary-fg-color--light: #b04040;
+  --md-primary-fg-color--dark:  #6e1017;
+}
+
+/* [data-md-color-scheme="slate"] {
+  --md-hue: 240; 
+} */
+
+.md-header__button.md-logo {
+  margin: 0.2rem 0 0.2rem 0;
+  padding: 0;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* GENERICS */
+
+.md-typeset .emphasis {
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+/* HAMMER/SCENE TABS */
+
+.md-typeset .workflow-tabs {
+  --workflow-hammer: #d9822b;
+  --workflow-scene: #4aa3ff;
+}
+
+.md-typeset .workflow-tabs .tabbed-labels > label {
+  color: var(--md-default-fg-color--light);
+}
+
+.md-typeset .workflow-tabs .tabbed-labels > label:nth-child(1):hover {
+  color: var(--workflow-hammer);
+}
+
+.md-typeset .workflow-tabs .tabbed-labels > label:nth-child(2):hover {
+  color: var(--workflow-scene);
+}
+
+.md-typeset .workflow-tabs .tabbed-alternate input:nth-child(1):checked ~ .tabbed-labels > :nth-child(1) {
+  color: var(--workflow-hammer);
+  border-color: var(--workflow-hammer);
+}
+
+.md-typeset .workflow-tabs .tabbed-alternate input:nth-child(2):checked ~ .tabbed-labels > :nth-child(2) {
+  color: var(--workflow-scene);
+  border-color: var(--workflow-scene);
+}
+
+.js .md-typeset .workflow-tabs .tabbed-alternate input:nth-child(1):checked ~ .tabbed-labels::before {
+  background: var(--workflow-hammer);
+}
+
+.js .md-typeset .workflow-tabs .tabbed-alternate input:nth-child(2):checked ~ .tabbed-labels::before {
+  background: var(--workflow-scene);
+}
+
+/* IMAGE BORDERS */
+
+.md-typeset img.img-frame {
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.35rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.22);
+  padding: 0.15rem;
+}
+
+.md-typeset img.img-compact {
+  max-width: min(18rem, 100%);
+}
+
+.md-typeset img.img-soft {
+  border-radius: 0.35rem;
+}
+
+.md-typeset .media-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.md-typeset .media-row > p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.md-typeset .media-row img {
+  flex: 0 0 auto;
+  margin-top: 0;
+}
+
+@media screen and (max-width: 36rem) {
+  .md-typeset .media-row {
+    flex-direction: column;
+  }
+}
+
+/* HOST SETTINGS TABLES */
+
+.md-typeset .host-settings-table {
+  --host-col-convar: 1%;
+  --host-col-default: 1%;
+  --host-col-range: 1%;
+  --host-col-applies: 1%;
+  --host-col-description: auto;
+
+  margin: 1em 0;
+  max-width: 100%;
+}
+
+.md-typeset .host-settings-table table:not([class]) {
+  display: table;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--host-table-font-size, 0.62rem);
+  max-width: 100%;
+  overflow: visible;
+  table-layout: auto;
+}
+
+.md-typeset .host-settings-table table:not([class]) th,
+.md-typeset .host-settings-table table:not([class]) td {
+  padding: 0.65em 0.8em;
+  vertical-align: top;
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(1) {
+  width: var(--host-col-convar);
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(2) {
+  width: var(--host-col-default);
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(3) {
+  width: var(--host-col-range);
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(4) {
+  width: var(--host-col-applies);
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(5) {
+  width: var(--host-col-description);
+}
+
+.md-typeset .host-settings-table table:not([class]) th:nth-child(-n+4),
+.md-typeset .host-settings-table table:not([class]) td:nth-child(2),
+.md-typeset .host-settings-table table:not([class]) td:nth-child(3),
+.md-typeset .host-settings-table table:not([class]) td:nth-child(4) {
+  white-space: nowrap;
+}
+
+.md-typeset .host-settings-table table:not([class]) td:nth-child(5) {
+  white-space: normal;
+}
+
+.md-typeset .host-command-table table:not([class]) th:nth-child(2) {
+  width: auto;
+}
+
+.md-typeset .host-command-table table:not([class]) td:nth-child(2) {
+  white-space: normal;
+}
+
+.md-typeset .host-settings-table .host-setting-title {
+  display: block;
+  margin-bottom: 0.2em;
+  color: var(--md-default-fg-color);
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.md-typeset .host-settings-table table:not([class]) td:first-child code {
+  display: inline-block;
+  font-size: 0.74em;
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.md-typeset .host-settings-table table:not([class]) td:first-child code.host-convar-wrap {
+  display: inline;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target {
+  cursor: pointer;
+  transition: background-color 125ms;
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:hover,
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:focus-visible {
+  background-color: var(--md-typeset-table-color--light);
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:hover .host-setting-title,
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:focus-visible .host-setting-title {
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:hover code,
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:focus-visible code {
+  background-color: var(--md-accent-fg-color--transparent);
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:focus-visible {
+  outline: 0.1rem solid var(--md-accent-fg-color);
+  outline-offset: -0.1rem;
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target .host-setting-title::after {
+  content: "copy";
+  display: inline-block;
+  margin-left: 0.45em;
+  color: var(--md-default-fg-color--light);
+  font-family: var(--md-text-font-family);
+  font-size: 0.72em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  opacity: 0;
+  text-transform: uppercase;
+  transition: color 125ms, opacity 125ms;
+  vertical-align: 0.08em;
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:hover .host-setting-title::after,
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target:focus-visible .host-setting-title::after {
+  opacity: 0.7;
+}
+
+.md-typeset .host-settings-table table:not([class]) td.host-convar-copy-target[data-copied="true"] .host-setting-title::after {
+  content: "copied";
+  color: var(--md-accent-fg-color);
+  opacity: 1;
+}
