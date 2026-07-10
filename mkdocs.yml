@@ -91,6 +91,21 @@ theme:
     - content.tabs.link
     - navigation.footer
 
+copyright: >
+  <strong>See something incorrect or missing?</strong>
+  <a href="https://github.com/Three-Thieves/ttt-wiki/issues/new">Open an issue</a>
+  or
+  <a href="https://github.com/Three-Thieves/ttt-wiki/pulls">submit a pull request</a>
+  on 
+  <a href="https://github.com/Three-Thieves/ttt-wiki">GitHub</a>.
+
+extra:
+  social:
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/threethieves
+      name: Join the 3T Discord
+
+
 extra_css:
   - stylesheets/extra.css
 

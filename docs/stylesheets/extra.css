@@ -26,6 +26,47 @@
   line-height: 1.55;
 }
 
+/* FOOTER LINKS */
+
+.md-footer-meta.md-typeset .md-copyright__highlight a {
+  color: #8a0808;
+  font-weight: 600;
+}
+
+.md-footer-meta.md-typeset .md-copyright__highlight a:hover,
+.md-footer-meta.md-typeset .md-copyright__highlight a:focus-visible {
+  color: #ffe45c;
+}
+
+.md-footer-meta.md-typeset .md-social__link:hover,
+.md-footer-meta.md-typeset .md-social__link:focus-visible {
+  color: #ffd500;
+  opacity: 1;
+}
+
+.md-footer-meta.md-typeset .md-social {
+  flex-wrap: wrap;
+}
+
+.md-footer-meta.md-typeset .md-social__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  width: auto;
+  padding: 0 0.4rem;
+  white-space: nowrap;
+}
+
+.md-footer-meta.md-typeset .md-social__link::after {
+  content: attr(title);
+  font-size: 0.64rem;
+  line-height: 1.6rem;
+}
+
+.md-footer-meta.md-typeset .md-social__link svg {
+  flex-shrink: 0;
+}
+
 /* HAMMER/SCENE TABS */
 
 .md-typeset .workflow-tabs {
