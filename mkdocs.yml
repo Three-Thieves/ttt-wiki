@@ -40,11 +40,12 @@ nav:
   
 theme:
   name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
   language: en
   font:
     text: Metrophobic
     code: Red Hat Mono
-  logo: assets/logo.png
   icon:
     admonition:
       note: fontawesome/solid/note-sticky
