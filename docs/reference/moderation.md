@@ -23,7 +23,7 @@ This page covers TTT role assignments and staff commands. Use it for live modera
 | --- | --- | --- |
 | User | None | Normal player. |
 | Moderator | User | Reports, kick, gag/gimp, skip-rounds, chat moderation, mod chat, and moderation audit visibility. |
-| Admin | Moderator | Ban, slay, session rule editing, and forced map votes. |
+| Admin | Moderator | Ban, slay, session rule editing, forced map votes, and direct map changes. |
 | Owner | Admin | Permission editing and session recovery. |
 | Founder | Owner | Current host/founder authority. Derived each session and not written to `roles.json`. |
 
@@ -106,6 +106,24 @@ Staff chat commands can be typed with either `!` or `/`. Partial player names ma
 
 ???+ warning "Bulk targets"
     `!slay`, `!slaynr`, `!gag`, `!ungag`, `!gimp`, `!ungimp`, and `!kick` can use `*` to target everyone you can legally act on. `!ban` requires a player name.
+
+## Map Tools
+
+Admins and hosts can find these under **Mod Menu → Tools → Map Tools**.
+
+| Tool | Permission | What it does |
+| --- | --- | --- |
+| **Force Map Vote** | `voting.force_mapvote` | Starts the normal map-vote flow immediately while waiting for players, or schedules it for the end of the current round. It is not blocked by `ttt_rtv_enabled`. |
+| **Choose Next Map** | `maps.change` | Opens the map browser and schedules a specific map for **End of Round** or **End of Map**. This bypasses the normal vote. |
+
+**Choose Next Map** accepts the normal browser selections, maps already in the custom rotation, a package ident such as `org.map`, or an `https://sbox.game/org/map` link. Scheduling, replacing, cancelling, and completing a direct change are announced in chat.
+
+???+ note "Timing"
+    **End of Round** changes happen immediately if the game is waiting for players or otherwise has no active round to finish. During an active round, the change waits for that round to end.
+
+    **End of Map** keeps the normal round limit and replaces the map vote that would usually happen when the map ends.
+
+There is no console-command equivalent for scheduling these two direct-change timings. The host-console `changelevel MAPIDENT` command remains an immediate map change.
 
 ## Host Console Tools
 

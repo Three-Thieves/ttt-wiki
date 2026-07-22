@@ -5,16 +5,67 @@ icon: material/tune
 
 # :material-tune: Host Settings and ConVars
 ## Changing ConVars and Settings
-<div class="media-row">
-    <img alt="mmoptions" class="img-frame" loading="lazy" src="../img/moreoptions.png" />
-    <p>If you're starting a lobby, settings can be easily configured from the main menu before creating a lobby by clicking on the <strong>More Options</strong> button. From there, you can choose between most of the core gameplay settings and adjust them as needed.</p>
-</div>
+
+If you're starting a lobby, settings can be configured from the main menu before creating it by clicking **Lobby Rules**. From there, you can choose between most core gameplay settings, manage map-vote sources, and save reusable rule presets.
 
 ???+ tip "Viewing current settings"
     Players can view any settings that are set to non-default values in the pause menu by clicking Lobby Info (or Server Info, if on a dedicated server).
     <div class="media-row">
         <img alt="lobbyinfo" class="img-frame" loading="lazy" src="../img/lobbyinfo.png" />
     </div>
+
+## :material-map-search: Lobby Map Selection
+
+A lobby host makes two separate map choices before starting the game: the map the lobby launches on and the maps that can appear in later votes.
+
+<div class="grid cards" markdown>
+
+-   __[:material-map-marker:{ .lg .middle } Starting Map](#starting-map)__
+
+    ---
+    The one map loaded when the lobby starts
+
+-   __[:material-vote:{ .lg .middle } Vote Rules](#vote-rules)__
+
+    ---
+    The source pools used for later map votes
+
+-   __[:material-playlist-plus:{ .lg .middle } Custom Maps](#custom-maps)__
+
+    ---
+    Specific package idents added to the vote candidates
+
+</div>
+
+### Starting Map
+
+Click the map preview on the Create Lobby screen to open **Choose Starting Map**. Selecting a map here changes only the map used to launch the lobby. It does not limit later votes to that map's source pool.
+
+The **Official**, **Verified**, **Compatible**, size, and search controls in this browser are browse filters. They decide which maps are shown while choosing the starting map; they do not change the lobby's map-vote rules.
+
+### Vote Rules
+
+Use **Lobby Rules → Map Vote** to choose the actual source pools used for later votes. The **Vote Rules** button in the starting-map browser opens these settings directly.
+
+The normal source pools are **Official**, **Verified**, and **Compatible**. They can be combined with specific maps from the custom list. If every normal source pool is disabled, votes use only the selected custom maps.
+
+### Custom Maps
+
+Use **Manage Custom Maps** under the Map Vote rules to add individual map packages. You can enter either form:
+
+```text
+org.map
+https://sbox.game/org/map
+```
+
+The browser also links to [all map packages on sbox.game](https://sbox.game/ugc/map) so you can browse outside the game and paste a package link or ident. The package must exist, be an unarchived map, and not be blocked by TTT.
+
+Custom maps are added to the eligible vote candidates alongside any enabled source pools. They are not guaranteed to appear on every ballot. Maps that do not target TTT can still be added explicitly; if one has no weapon or pickup spawns, TTT will attempt to [generate weapon placements automatically](../mapping/basics/spawns.md#weapon-spawns).
+
+???+ info "Rule presets and the starting map"
+    Named rule presets save the custom map list, but they do not save which map should be used as the next lobby's starting map.
+
+    When a preset is created or updated, the current starting map is added to its custom vote candidates. Starting a lobby does the same. Changing the starting map later does not silently remove the previous map from the custom list.
 
 
 Most rule settings are native s&box ConVars. Saved ConVars are stored in `config/convar/game.json`. Each value appears under a `convar.` key:
@@ -170,7 +221,8 @@ The key in `game.json` includes the `convar.` prefix. The console command does n
 | <span class="host-setting-title">Rock the Vote</span><code>ttt_rtv_enabled</code> | `True` | `True` / `False` | Live | Allows players to start Rock the Vote map-change votes. Votekick and admin-forced map votes are unaffected. |
 | <span class="host-setting-title">Vote Options</span><code>ttt_mapvote_option_count</code> | `10` | `1` to `12` | New votes | Maximum number of maps shown in a map vote. |
 | <span class="host-setting-title">Map Pools</span><code>ttt_mapvote_pool</code> | `Official;Verified` | See below | New votes | Map source pools used for generated map vote options. |
-| <span class="host-setting-title">Player Count Filter</span><code>ttt_mapvote_filter_by_players</code> | `False` | `True` / `False` | New votes | Prefers maps whose authored size range fits the current lobby size. |
+| <span class="host-setting-title">Custom Maps</span><code>MapVote.AlwaysInclude</code> | empty | Package idents | New votes | Specific map packages added to the eligible vote candidates. This is a lobby setting and dedicated-server config field, not a ConVar. |
+| <span class="host-setting-title">Player Count Filter</span><code>ttt_mapvote_filter_by_players</code> | `False` | `True` / `False` | New votes | Prefers pool maps whose authored size range fits the current lobby size. Explicit custom maps remain eligible. |
 | <span class="host-setting-title">Show Map Tags</span><code>ttt_mapvote_show_tags</code> | `True` | `True` / `False` | New votes | Shows approved map package tags on map vote cards. |
 
 </div>
@@ -180,9 +232,11 @@ The key in `game.json` includes the `convar.` prefix. The console command does n
 ???+ tip "Map Vote Pools"
     `ttt_mapvote_pool` accepts `Official`, `Verified`, and `AllCompatible`. Use semicolons, commas, plus signs, or newlines to combine pools. `All` and `Any` are accepted shortcuts for all currently playable source pools.
 
+    The lobby UI calls `MapVote.AlwaysInclude` **Custom Maps**. These maps join the eligible candidate set; they are not pinned to every ballot. Leave `ttt_mapvote_pool` empty to use only the custom list.
+
     The `t.server.mapvote.*` mutation commands write `server_settings.json`, apply to the next generated map vote, and reject changes while a map vote is already active.
 
-    `MapVote.AlwaysInclude` and `MapVote.NeverShow` are not ConVars. They live in `server_settings.json` because they are package-ident lists of specific maps to include or block (see [Server Hosting](../server-hosting/index.md#server_settingsjson)).
+    `MapVote.AlwaysInclude` and `MapVote.NeverShow` are not ConVars. They live in `server_settings.json` because they are package-ident lists of specific maps to include or block (see [Server Hosting](../server-hosting/index.md#settings-config)).
 
 ---
 ### :material-magnify: Forensics
@@ -252,6 +306,8 @@ These dedicated-server ConVars are not part of the lobby rules screen, but they 
 </div>
 
 The `t.server.mapvote.*` mutation commands write `server_settings.json`, apply to the next generated map vote, and reject changes while a map vote is already active.
+
+Scheduled direct map changes are available through [Mod Menu → Tools → Map Tools](moderation.md#map-tools). There is currently no console-command equivalent for scheduling a direct change at the end of the round or map.
 
 ---
 

@@ -130,7 +130,7 @@ Current editable shape:
 | `Lobby.MaxPlayers` | `36` | Maximum player count for the lobby. Keep this aligned with any external server-manager player limit. |
 | `Lobby.Privacy` | `0` | Lobby privacy: `0` public, `1` private, `2` friends only. Public dedicated servers should use `0`. |
 | `MapVote.Pool` | `Official;Verified` | Source pools used for generated map vote options. |
-| `MapVote.AlwaysInclude` | empty | Extra map idents to add to generated votes when possible. |
+| `MapVote.AlwaysInclude` | empty | Extra map idents added to the eligible vote candidates. These are called **Custom Maps** in the lobby UI. |
 | `MapVote.NeverShow` | empty | Server-owner exclusions. These maps will not appear in generated map votes. |
 
 !!! warning "Manual edits"
@@ -167,9 +167,12 @@ Official;Verified;AllCompatible
 
 ---
 
-`AlwaysInclude` is additive. It can include maps outside the selected pool as long as they can be resolved and are not rejected by game validation. `NeverShow` is the server-owner exclusion list and wins over selected pools. Adding a map to `AlwaysInclude` removes it from `NeverShow`. Adding a map to `NeverShow` removes it from `AlwaysInclude`.
+`AlwaysInclude` is additive. It can include maps outside the selected pool as long as they can be resolved and are not rejected by game validation. These maps join the eligible candidate set; they are not guaranteed or pinned to every ballot. `NeverShow` is the server-owner exclusion list and wins over selected pools. Adding a map to `AlwaysInclude` removes it from `NeverShow`. Adding a map to `NeverShow` removes it from `AlwaysInclude`.
 
 Set `Pool` to an empty string if you only want maps from `AlwaysInclude`.
+
+!!! info "Lobby terminology"
+    The Create Lobby screen calls `AlwaysInclude` **Custom Maps**. Both names refer to the same additional candidate list. See [Lobby Map Selection](../reference/server-settings.md#lobby-map-selection) for the host-facing browser and rule-preset behavior.
 
 ???+ warning "Other maps"
     Any maps that aren't targeting the game (e.g. `facepunch.flatgrass`) must be added manually to "AlwaysInclude". We'd add it as a pool, but it'd take 2 full minutes just to load the map vote or browser, because we'd have to check every map on s&box to do so.
