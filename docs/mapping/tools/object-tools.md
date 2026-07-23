@@ -79,13 +79,10 @@ Object tools create, detect, or consume physical objects through map I/O. Use th
 
 ### Setup
 
-1. Add a trigger volume where props should be detected or consumed.
-2. Add `TTT Object Sink`.
-3. Choose `Action`.
-4. Set `Required Tags` to the prop tag or tags that should be accepted.
-5. Add those tags to the props that should count.
-6. Wire `Targets On Consumed` or `Targets On Detected` to a receiver, such as a logic counter or enable target.
-7. Test with held props, thrown props, and props dropped into the volume.
+1. Add `TTT Object Sink` to a `GameObject`. It will include a box collider, which will be the area that detects props.
+2. Set `Required Tags` to the prop tag or tags that should be accepted.
+3. Add those tags to the props that should count.
+4. Wire `Targets On Consumed` or `Targets On Detected` to a receiver, such as a logic counter or enable target.
 
 !!! warning "Required Tags are required"
     If `Required Tags` is empty, the sink matches nothing. This prevents accidental map-wide prop deletion or detection.
